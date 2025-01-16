@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentManager_WPF.ViewModels
 {
-    class StudentListingViewModel
+    class StudentListingViewModel : ViewModelBase
     {
     }
 }
