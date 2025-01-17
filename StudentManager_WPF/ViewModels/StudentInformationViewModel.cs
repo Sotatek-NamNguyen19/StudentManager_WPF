@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using StudentManager_WPF.Commands;
+using StudentManager_WPF.Stores;
 
 namespace StudentManager_WPF.ViewModels
 {
@@ -14,10 +16,12 @@ namespace StudentManager_WPF.ViewModels
         public StudentListingViewModel StudentListingViewModel { get; }    
         public ICommand AddStudentCommand { get;}
 
-        public StudentInformationViewModel()
+        public StudentInformationViewModel(SelectedStudentStore _selectedStudentStore)
         {
-            StudentListingViewModel = new StudentListingViewModel();
-            StudentInfoDetailsViewModel = new StudentInfoDetailsViewModel();    
+            StudentListingViewModel = new StudentListingViewModel(_selectedStudentStore);
+            StudentInfoDetailsViewModel = new StudentInfoDetailsViewModel(_selectedStudentStore);
+
+            AddStudentCommand = new AddStudentInfoCommand();
         }
     }
 }

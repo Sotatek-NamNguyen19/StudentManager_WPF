@@ -1,0 +1,9 @@
+﻿<Window x:Class="StudentManager_WPF.Components.EditStudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:local="clr-namespace:StudentManager_WPF.Components"
+        Title="Edit Student" Height="300" Width="400">
+    <Grid>
+        <local:EditUserControl/>
+    </Grid>
+</Window>
