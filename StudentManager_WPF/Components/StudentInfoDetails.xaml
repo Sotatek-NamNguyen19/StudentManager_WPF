@@ -8,34 +8,59 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Border BorderBrush="Gray" BorderThickness="1" Padding="20">
-            <Grid Grid.IsSharedSizeScope="True" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Text="NAM" FontSize="28"/>
-
-                <Grid Grid.Row="1" Margin=" 0 20 0 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0" Text="Address:" FontWeight="Bold"/>
-                    <TextBlock Grid.Column="1" Text="HA NOI" Margin="20 0 0 0"/>
-                    
+            <Grid>
+                <Grid>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasSelectedStudent}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <TextBlock Grid.Row="0" FontSize="24" Text="Please Select a student to see their details"/>
                 </Grid>
+                <Grid Grid.IsSharedSizeScope="True" >
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasSelectedStudent}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-                <Grid Grid.Row="2" Margin=" 0 20 0 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
- 
-                    <TextBlock Grid.Column="0" Text="Age:" FontWeight="Bold"/>
-                    <TextBlock Grid.Column="1" Text="26" Margin="20 0 0 0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding Username}" FontSize="28"/>
+
+                    <Grid Grid.Row="1" Margin=" 0 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Address:" FontWeight="Bold"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Address}" Margin="20 0 0 0"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin=" 0 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Age:" FontWeight="Bold"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Age}" Margin="20 0 0 0"/>
+                    </Grid>
                 </Grid>
             </Grid>
         </Border>

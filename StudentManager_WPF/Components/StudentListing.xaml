@@ -3,12 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:StudentManager_WPF.Components"
+             xmlns:local="clr-namespace:StudentManager_WPF.Components" 
+             xmlns:custom="clr-namespace:DropdownMenuControl;assembly=DropdownMenuControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!-- Định nghĩa Style cho Button -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF8C00"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
-            <ListView BorderThickness="0"/>
+            <Grid>
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=border}"/>
+                </Grid.OpacityMask>
+                <Border x:Name="border" Background="White" CornerRadius="5"/>
+                <ListView BorderThickness="0" ItemsSource="{Binding StudentListingItemViewModels}" SelectedItem="{Binding SelectedStudentListingItemViewModel}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Username}"></TextBlock>
+                                <custom:DropdownMenu Grid.Column="1" Margin="10 0 0 0">
+                                    <StackPanel>
+                                        <Button Content="Edit" Style="{StaticResource ButtonStyle}" Command="{Binding EditCommand}" CommandParameter="{Binding Student}"/>
+                                        <Button Content="Remove" Style="{StaticResource ButtonStyle}" Command="{Binding DeleteCommand}" CommandParameter="{Binding}"/>
+                                    </StackPanel>
+                                </custom:DropdownMenu>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

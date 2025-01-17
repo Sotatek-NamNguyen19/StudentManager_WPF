@@ -21,7 +21,7 @@
 
             <TextBlock Grid.Column="0" Text="Student Information" FontSize="28" />
 
-            <Button Grid.Column="1" Content="Add" FontSize="16" />
+            <Button Grid.Column="1" Content="Add" FontSize="16" Command="{Binding AddStudentCommand}"/>
         </Grid>
         
         <Grid Grid.Row="1" Margin="0 20 0 0">
@@ -30,9 +30,9 @@
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
 
-            <components:StudentListing Grid.Column="0"/>
+            <components:StudentListing Grid.Column="0" DataContext="{Binding StudentListingViewModel}"/>
             
-            <components:StudentInfoDetails Grid.Column="1" Margin="20 0 0 0"/>
+            <components:StudentInfoDetails Grid.Column="1" Margin="20 0 0 0" DataContext="{Binding StudentInfoDetailsViewModel}"/>
         </Grid>
     </Grid>
 </UserControl>
